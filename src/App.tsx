@@ -13,6 +13,9 @@ export default function App() {
       if (e.ctrlKey && e.key === "s") {
         e.preventDefault();
         setPopUp(true);
+      } else if (e.code === "27") {
+        e.preventDefault();
+        setPopUp(false);
       }
     });
   }, []);
