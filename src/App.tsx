@@ -17,6 +17,12 @@ export default function App() {
     });
   }, []);
 
+  useEffect(() => {
+    if (popUp) {
+      textAreaRef.current!.disabled = true;
+    } else textAreaRef.current!.disabled = false;
+  }, [popUp]);
+
   function clear() {
     if (confirm("clear ?")) {
       if (confirm("sure ??")) {
@@ -29,16 +35,17 @@ export default function App() {
 
   return (
     <div className="mx-[0.7rem] md:mx-[1rem] lg:mx-[10rem] text-secondary font-mono">
-      <SettingsPopup display={popUp ? "block" : "none"} text={text} clearHandl={clear} />
+      <SettingsPopup setPopUp={setPopUp} display={popUp ? "block" : "none"} text={text} clearHandl={clear} />
       <div className="flex justify-between items-center px-10 lg:px-40 font-semibold text-center my-5">
         <div className="text-4xl hover:cursor-pointer hover:text-secondary-hover">NoteBook</div>
         <div className="text-2xl hover:cursor-pointer hover:text-secondary-hover" onClick={() => setPopUp(true)}>
-          S
+          ()
         </div>
       </div>
       <hr />
       <textarea
         ref={textAreaRef}
+        style={{ opacity: popUp ? 0.5 : 1 }}
         className="w-full h-[85vh] bg-primary text-lg outline-none resize-none scrollbar"
         onKeyDown={(e) => {
           if (e.keyCode === 9) {

@@ -3,9 +3,10 @@ import React, { useState } from "react";
 interface Props {
   text: string;
   clearHandl: () => void;
+  setPopUp: React.Dispatch<React.SetStateAction<boolean>>;
   display: string;
 }
-export default function SettingsPopup({ text, clearHandl, display = "hidden" }: Props) {
+export default function SettingsPopup({ text, clearHandl, display = "hidden", setPopUp }: Props) {
   const [fileName, setFileName] = useState<string>(`FILE-${new Date().toLocaleString()}.txt`);
 
   function downloadHandl(e: React.FormEvent) {
@@ -21,7 +22,7 @@ export default function SettingsPopup({ text, clearHandl, display = "hidden" }: 
     }, 250);
   }
   return (
-    <div style={{ display }} className="fixed border-2 border-secondary bg-primary w-[25rem] top-[25vh] left-[50%] transform -translate-x-[50%] h-fit">
+    <div style={{ display }} className="fixed z-10 border-2 border-secondary bg-primary w-[25rem] top-[25vh] left-[50%] transform -translate-x-[50%] h-fit">
       <div className="text-center m-auto">Settings</div>
       <hr />
       <form onSubmit={downloadHandl} className="m-6">
@@ -32,7 +33,7 @@ export default function SettingsPopup({ text, clearHandl, display = "hidden" }: 
           </div>
           <div className="flex justify-between items-center">
             <div>Word count:</div>
-            <div className="text-lg">{text.match(/(\w+)/g)?.length}</div>
+            <div className="text-lg">{text.match(/(\w+)/g)?.length ?? 0}</div>
           </div>
           <div className="flex justify-between items-center">
             <div>Number of sentences:</div>
@@ -43,20 +44,15 @@ export default function SettingsPopup({ text, clearHandl, display = "hidden" }: 
             <div className="text-lg">{text.length}</div>
           </div>
           <div className="flex justify-between items-center">
-            <button onClick={clearHandl} className="p-2 px-5 rounded-md border-2 transition duration-300 ease-in-out bg-secondary text-primary hover:bg-primary hover:text-secondary hover:border-secondary">
+            <div onClick={clearHandl} className="p-2 px-5 rounded-md border-2 transition duration-300 ease-in-out bg-secondary text-primary hover:bg-primary hover:text-secondary hover:border-secondary">
               Clear
-            </button>
+            </div>
             <button type="submit" className="p-2 px-5 rounded-md border-2 transition duration-300 ease-in-out bg-secondary text-primary hover:bg-primary hover:text-secondary hover:border-secondary">
               Download
             </button>
-            <button
-              onClick={() => {
-                window.location.reload();
-              }}
-              className="p-2 px-5 rounded-md border-2 transition duration-300 ease-in-out bg-red-500 text-secondary hover:bg-primary hover:text-red-500 hover:border-red-500"
-            >
+            <div onClick={() => setPopUp(false)} className="p-2 px-5 rounded-md border-2 transition duration-300 ease-in-out bg-red-500 text-secondary hover:bg-primary hover:text-red-500 hover:border-red-500">
               Exit
-            </button>
+            </div>
           </div>
         </div>
       </form>
