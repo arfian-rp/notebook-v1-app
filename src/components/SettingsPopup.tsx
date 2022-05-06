@@ -44,15 +44,21 @@ export default function SettingsPopup({ text, clearHandl, display = "hidden", se
             <div className="text-lg">{text.length}</div>
           </div>
           <div className="flex justify-between items-center">
-            <div onClick={clearHandl} className="p-2 px-5 rounded-md border-2 transition duration-300 ease-in-out bg-secondary text-primary hover:bg-primary hover:text-secondary hover:border-secondary">
+            <div onClick={clearHandl} className="p-2 px-5 rounded-md border-2 hover:cursor-pointer transition duration-300 ease-in-out bg-secondary text-primary hover:bg-primary hover:text-secondary hover:border-secondary">
               Clear
             </div>
             <button type="submit" className="p-2 px-5 rounded-md border-2 transition duration-300 ease-in-out bg-secondary text-primary hover:bg-primary hover:text-secondary hover:border-secondary">
               Download
             </button>
-            <div onClick={() => setPopUp(false)} className="p-2 px-5 rounded-md border-2 transition duration-300 ease-in-out bg-red-500 text-secondary hover:bg-primary hover:text-red-500 hover:border-red-500">
+            <div onClick={() => setPopUp(false)} className="p-2 px-5 rounded-md border-2 hover:cursor-pointer transition duration-300 ease-in-out bg-red-500 text-secondary hover:bg-primary hover:text-red-500 hover:border-red-500">
               Exit
             </div>
+          </div>
+          <div className="flex justify-center">
+            created by
+            <a className="text-sky-400" href="https://arfian-id.web.app" target="_blank">
+              <i>Arfian</i>
+            </a>
           </div>
         </div>
       </form>
