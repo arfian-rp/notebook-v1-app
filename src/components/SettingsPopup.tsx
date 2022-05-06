@@ -29,7 +29,7 @@ export default function SettingsPopup({ text, clearHandl, display = "hidden", se
         <div className="flex flex-col gap-7">
           <div className="flex justify-between items-center">
             <div>File name:</div>
-            <input className="m-1 p-1 text-center text-primary rounded-md" value={fileName} onChange={(e) => setFileName(e.target.value)} type="text" autoFocus />
+            <input className="m-1 p-1 text-center text-primary rounded-md" value={fileName} onChange={(e) => setFileName(e.target.value)} type="text" />
           </div>
           <div className="flex justify-between items-center">
             <div>Word count:</div>
